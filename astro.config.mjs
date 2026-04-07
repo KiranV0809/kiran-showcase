@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://kiran-nagireddy.github.io',
-  base: '/',
+  base: '/kiran-showcase/',
   output: 'static',
   devToolbar: { enabled: false },
 });

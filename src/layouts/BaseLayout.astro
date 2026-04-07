@@ -1,4 +1,7 @@
 ---
+import '../styles/global.css';
+import '../styles/animations.css';
+
 interface Props {
   title?: string;
   description?: string;
@@ -15,12 +18,10 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <title>{title}</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles/global.css" />
-  <link rel="stylesheet" href="/styles/animations.css" />
 </head>
 <body>
   <slot />
@@ -36,12 +37,9 @@ const {
 
     document.querySelectorAll('.reveal, .featured-reveal').forEach(el => observer.observe(el));
 
-    // Stagger: 2nd project card gets a delay
     const cards = document.querySelectorAll('.project-card');
     cards.forEach((card, i) => {
-      if (i === 1) {
-        card.style.transitionDelay = '0.12s';
-      }
+      if (i === 1) card.style.transitionDelay = '0.12s';
     });
   </script>
 </body>
