@@ -1,0 +1,303 @@
+---
+interface Tag {
+  label: string;
+  gold: boolean;
+}
+
+interface Project {
+  id: string;
+  title: string;
+  oneliner: string;
+  description: string;
+  category: string[];
+  tags: Tag[];
+  github: string;
+  demo: string;
+  screenshot: string;
+  screenshotAlt: string;
+}
+
+interface Props {
+  project: Project;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+
+const indexStr = index.toString().padStart(2, '0');
+---
+<article
+  class="project-card reveal"
+  data-category={project.category.join(',')}
+>
+  <!-- Image zone -->
+  <div class="card-img-zone">
+    {project.screenshot ? (
+      <img
+        src={project.screenshot}
+        alt={project.screenshotAlt}
+        class="card-screenshot"
+      />
+    ) : (
+      <div class="card-screen-mockup">
+        <div class="mac-dots">
+          <span class="mac-dot red"></span>
+          <span class="mac-dot yellow"></span>
+          <span class="mac-dot green"></span>
+        </div>
+        <div class="screen-content">
+          <div class="screen-line gold-line"></div>
+          <div class="screen-line full-line"></div>
+          <div class="screen-line full-line"></div>
+          <div class="screen-line short-line"></div>
+          <div class="screen-line pulse-line"></div>
+          <div class="screen-line full-line"></div>
+        </div>
+      </div>
+    )}
+    <div class="card-img-overlay"></div>
+  </div>
+
+  <!-- Card body -->
+  <div class="card-body">
+    <span class="card-index">{indexStr}</span>
+    <h3 class="card-title">{project.title}</h3>
+    <p class="card-oneliner">{project.oneliner}</p>
+    <p class="card-desc">{project.description}</p>
+  </div>
+
+  <!-- Card footer -->
+  <div class="card-footer">
+    <div class="card-tags">
+      {project.tags.map(tag => (
+        <span class={`card-tag${tag.gold ? ' gold' : ''}`}>{tag.label}</span>
+      ))}
+    </div>
+    <a
+      href={project.github || '#'}
+      target={project.github ? '_blank' : undefined}
+      rel="noopener"
+      class="card-arrow"
+      aria-label={`View ${project.title}`}
+    >↗</a>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+  }
+
+  .project-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-gold);
+    transition: width 0.4s var(--ease-out-expo);
+    z-index: 2;
+  }
+
+  .project-card:hover::before {
+    width: 100%;
+  }
+
+  /* Image zone */
+  .card-img-zone {
+    height: 195px;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(201, 168, 76, 0.06), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .project-card:hover .card-img-overlay {
+    opacity: 1;
+  }
+
+  /* Decorative mockup */
+  .card-screen-mockup {
+    position: relative;
+    width: 75%;
+    height: 70%;
+    border: 1px solid rgba(232, 224, 208, 0.08);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-2);
+    overflow: hidden;
+  }
+
+  .card-screen-mockup::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.3), transparent);
+  }
+
+  .mac-dots {
+    display: flex;
+    gap: 4px;
+    padding: 5px 0 0 8px;
+  }
+
+  .mac-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .mac-dot.red    { background: #FF5F57; }
+  .mac-dot.yellow { background: #FEBC2E; }
+  .mac-dot.green  { background: #28C840; }
+
+  .screen-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px 12px 12px;
+  }
+
+  .screen-line {
+    height: 2px;
+    border-radius: 1px;
+  }
+
+  .gold-line  { width: 45%; background: rgba(201, 168, 76, 0.20); }
+  .full-line  { width: 100%; background: rgba(232, 224, 208, 0.05); }
+  .short-line { width: 65%; background: rgba(232, 224, 208, 0.05); }
+
+  .pulse-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(201, 168, 76, 0.4),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  /* Card body */
+  .card-body {
+    padding: 1.5rem 1.75rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card-index {
+    font-family: var(--font-serif);
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(232, 224, 208, 0.18);
+  }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-text);
+    line-height: 1.2;
+  }
+
+  .card-oneliner {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    color: rgba(201, 168, 76, 0.50);
+    text-transform: uppercase;
+  }
+
+  .card-desc {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(232, 224, 208, 0.35);
+  }
+
+  /* Card footer */
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.75rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-tags);
+  }
+
+  .card-tag {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(232, 224, 208, 0.25);
+    text-transform: uppercase;
+    background: rgba(232, 224, 208, 0.03);
+    border: 1px solid rgba(232, 224, 208, 0.07);
+    border-radius: var(--radius-sm);
+    padding: 2px 7px;
+  }
+
+  .card-tag.gold {
+    color: rgba(201, 168, 76, 0.55);
+    border-color: rgba(201, 168, 76, 0.15);
+    background: rgba(201, 168, 76, 0.03);
+  }
+
+  .card-arrow {
+    font-size: 15px;
+    color: rgba(232, 224, 208, 0.15);
+    text-decoration: none;
+    transition: all 0.25s var(--ease-out-expo);
+    flex-shrink: 0;
+  }
+
+  .project-card:hover .card-arrow {
+    color: var(--color-gold);
+    transform: translate(4px, -4px);
+  }
+</style>

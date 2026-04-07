@@ -1,0 +1,64 @@
+---
+const items = [
+  'Java 17', 'Spring Boot', 'Node.js', 'TypeScript', 'Angular',
+  'AWS ECS', 'S3', 'DynamoDB', 'Claude AI', 'Railway',
+  'SQLite', 'REST APIs', 'GitHub Actions', 'Docker'
+];
+---
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-track">
+      {items.map((item, i) => (
+        <>
+          <span class="ticker-item">{item}</span>
+          {i < items.length - 1 && <span class="sep">·</span>}
+        </>
+      ))}
+      <span class="sep">·</span>
+      {items.map((item, i) => (
+        <>
+          <span class="ticker-item">{item}</span>
+          {i < items.length - 1 && <span class="sep">·</span>}
+        </>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .ticker {
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-3);
+    animation: fade-up 0.6s var(--ease-out-expo) 1.00s both;
+  }
+
+  .ticker-inner {
+    padding: 0.6rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    animation: ticker-scroll 22s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: var(--color-ticker-text);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .sep {
+    color: var(--color-ticker-sep);
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+</style>

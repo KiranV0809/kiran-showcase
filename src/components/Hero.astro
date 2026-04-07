@@ -1,0 +1,222 @@
+---
+---
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-ghost" aria-hidden="true">BUILD</div>
+
+  <!-- Left column -->
+  <div class="hero-left">
+    <p class="hero-eyebrow">Full Stack Engineer</p>
+    <h1 class="hero-title">
+      <span class="word w1">I </span><span class="word w2">build</span>
+      <span class="word w3">systems</span>
+      <span class="word w4">that</span>
+      <span class="word w5 em-word">hold up.<span class="cursor" aria-hidden="true"></span></span>
+    </h1>
+  </div>
+
+  <!-- Right column -->
+  <div class="hero-right">
+    <p class="hero-desc">
+      <strong>5 years building production software</strong> in financial services.
+      I've worked on real systems that real people rely on. These days I'm also
+      deep into AI tooling and multi-agent architecture.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <span class="stat-number">5<em>yr</em></span>
+        <span class="stat-label">Production Exp.</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Showcased Builds</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">More Shipping</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    padding: 0 var(--pad-page-x);
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+    min-height: 70vh;
+  }
+
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 75% 50%, rgba(201, 168, 76, 0.09), transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-ghost {
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-serif);
+    font-size: 200px;
+    font-weight: 300;
+    color: rgba(201, 168, 76, 0.03);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    z-index: 0;
+    animation: float-text 8s ease-in-out infinite;
+  }
+
+  .hero-left {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    animation: fade-up 0.7s var(--ease-out-expo) 0.3s both;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--color-gold);
+    flex-shrink: 0;
+    animation: draw-line 0.6s var(--ease-out-expo) 0.5s both;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(64px, 6.5vw, 96px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    color: var(--color-text);
+  }
+
+  .word {
+    display: inline;
+    animation-fill-mode: both;
+  }
+
+  /* w3, w4, w5 each on their own line; w1+w2 share a line */
+  .w3, .w4, .w5 {
+    display: block;
+  }
+
+  .w1 { animation: word-up 0.8s var(--ease-out-expo) 0.40s both; }
+  .w2 { animation: word-up 0.8s var(--ease-out-expo) 0.52s both; }
+  .w3 { animation: word-up 0.8s var(--ease-out-expo) 0.64s both; }
+  .w4 { animation: word-up 0.8s var(--ease-out-expo) 0.76s both; }
+  .w5 { animation: word-up 0.8s var(--ease-out-expo) 0.88s both; }
+
+  .em-word {
+    color: var(--color-gold);
+    font-style: italic;
+  }
+
+  /* Cursor sits inline at end of "hold up." — inside .w5 */
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.75em;
+    background: var(--color-gold);
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: blink-cursor 1s step-end 1.4s infinite;
+  }
+
+  .hero-right {
+    position: relative;
+    z-index: 1;
+    animation: fade-up 0.9s var(--ease-out-expo) 0.70s both;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .hero-desc {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.85;
+    color: rgba(232, 224, 208, 0.65);
+    border-left: 2px solid var(--color-gold-dim);
+    padding-left: 1.5rem;
+  }
+
+  .hero-desc strong {
+    font-weight: 600;
+    color: rgba(232, 224, 208, 0.95);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap-stats);
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+  }
+
+  .stat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.5rem 1.25rem;
+    background: var(--color-bg);
+    transition: background 0.25s;
+  }
+
+  .stat-box:hover {
+    background: rgba(201, 168, 76, 0.04);
+  }
+
+  .stat-number {
+    font-family: var(--font-serif);
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .stat-number em {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 300;
+    font-style: normal;
+    color: var(--color-gold);
+  }
+
+  .stat-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    color: rgba(232, 224, 208, 0.40);
+    text-transform: uppercase;
+  }
+
+</style>

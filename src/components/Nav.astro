@@ -1,0 +1,130 @@
+---
+---
+<nav class="nav">
+  <a href="/" class="logo">kiran<em class="em">.</em>dev</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#projects" class="nav-link">Work</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="https://github.com/KiranV0809" class="nav-link" target="_blank" rel="noopener">GitHub ↗</a></li>
+    </ul>
+    <div class="badge">
+      <span class="dot"></span>
+      <span class="badge-text">Open to Work</span>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(8, 8, 8, 0.96);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    animation: fade-up 0.6s var(--ease-out-expo) 0.1s both;
+  }
+
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .logo .em {
+    color: var(--color-gold);
+    font-style: italic;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-nav-right);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-nav);
+    list-style: none;
+  }
+
+  .nav-link {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    color: var(--color-text-nav);
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s var(--ease-out-expo);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+
+  .nav-link:hover {
+    color: var(--color-gold);
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid rgba(232, 224, 208, 0.10);
+    border-radius: var(--radius-sm);
+    padding: 5px 12px;
+    cursor: default;
+    transition: border-color 0.25s, color 0.25s;
+  }
+
+  .badge:hover {
+    border-color: rgba(76, 175, 80, 0.40);
+  }
+
+  .badge:hover .badge-text {
+    color: rgba(76, 175, 80, 0.80);
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-green);
+    animation: pulse-dot 2s ease infinite;
+    flex-shrink: 0;
+  }
+
+  .badge-text {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--color-text-nav);
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+</style>

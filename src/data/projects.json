@@ -1,0 +1,56 @@
+[
+  {
+    "id": "resume-tailor",
+    "featured": true,
+    "title": "Resume Tailoring Agent",
+    "oneliner": "Paste a job description. Get a tailored resume.",
+    "description": "A multi-agent system that reads a job description, figures out what the role is actually looking for, and rewrites your resume to match. Four agents working in sequence: one analyses the JD, one rewrites, one drafts the cover letter, one reviews the output before anything lands in your hands.",
+    "category": ["AI / Agents"],
+    "tags": [
+      { "label": "Claude AI", "gold": true },
+      { "label": "Multi-Agent", "gold": true },
+      { "label": "Node.js", "gold": false },
+      { "label": "TypeScript", "gold": false },
+      { "label": "Railway", "gold": false }
+    ],
+    "github": "https://github.com/KiranV0809/resume-tailor",
+    "demo": "",
+    "screenshot": "/images/resume-tailor.png",
+    "screenshotAlt": "Resume Tailoring Agent interface"
+  },
+  {
+    "id": "cricket-bot",
+    "featured": false,
+    "title": "Cricket Score Bot",
+    "oneliner": "Score updates without the noise.",
+    "description": "A cron job that checks live cricket data every 15 minutes, compares it against a local SQLite snapshot, and sends a notification only when something actually changed. Built because I got tired of refreshing the browser mid-match.",
+    "category": ["Backend"],
+    "tags": [
+      { "label": "Cron Job", "gold": true },
+      { "label": "Diff Engine", "gold": true },
+      { "label": "SQLite", "gold": false },
+      { "label": "CricData API", "gold": false }
+    ],
+    "github": "https://github.com/KiranV0809/cricket-bot",
+    "demo": "",
+    "screenshot": "/images/cricket-bot.png",
+    "screenshotAlt": "Cricket Score Bot notification"
+  },
+  {
+    "id": "flick-finder",
+    "featured": false,
+    "title": "Flick Finder",
+    "oneliner": "Search a movie. Get what you need.",
+    "description": "A movie search app built on the TMDB API. Type a title and you get the rating, genre, cast and a short synopsis. Nothing more. I built it because most movie apps bury the info you actually want.",
+    "category": ["Full Stack"],
+    "tags": [
+      { "label": "TMDB API", "gold": true },
+      { "label": "Search UX", "gold": false },
+      { "label": "REST API", "gold": false }
+    ],
+    "github": "https://github.com/KiranV0809/flick-finder",
+    "demo": "",
+    "screenshot": "/images/flick-finder.png",
+    "screenshotAlt": "Flick Finder movie search interface"
+  }
+]
