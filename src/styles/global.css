@@ -1,15 +1,15 @@
 :root {
   /* Backgrounds */
   --color-bg:          #080808;
-  --color-surface:     #0D0D0D;
-  --color-surface-2:   #111111;
-  --color-surface-3:   #0A0A0A;
+  --color-surface:     #141414;   /* raised — was #0D0D0D, now clearly distinct from bg */
+  --color-surface-2:   #1A1A1A;   /* raised — was #111111 */
+  --color-surface-3:   #0F0F0F;   /* ticker — was #0A0A0A */
 
   /* Gold */
   --color-gold:        #C9A84C;
-  --color-gold-dim:    rgba(201, 168, 76, 0.35);
+  --color-gold-dim:    rgba(201, 168, 76, 0.40);
   --color-gold-glow:   rgba(201, 168, 76, 0.07);
-  --color-gold-faint:  rgba(201, 168, 76, 0.04);
+  --color-gold-faint:  rgba(201, 168, 76, 0.05);
 
   /* Text */
   --color-text:        #E8E0D0;
@@ -18,10 +18,10 @@
   --color-text-ghost:  rgba(232, 224, 208, 0.07);
   --color-text-nav:    rgba(232, 224, 208, 0.58);
 
-  /* Borders */
-  --color-border:      rgba(232, 224, 208, 0.07);
-  --color-border-md:   rgba(232, 224, 208, 0.12);
-  --color-border-hover:rgba(232, 224, 208, 0.30);
+  /* Borders — raised so sections are visibly separated */
+  --color-border:      rgba(232, 224, 208, 0.12);
+  --color-border-md:   rgba(232, 224, 208, 0.20);
+  --color-border-hover:rgba(232, 224, 208, 0.40);
 
   /* Status */
   --color-green:       #4CAF50;
@@ -72,6 +72,9 @@ html {
 
 body {
   background: var(--color-bg);
+  /* Subtle warm depth — barely-there radial glow at the top center */
+  background-image:
+    radial-gradient(ellipse 100% 40% at 50% 0%, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
   color: var(--color-text);
   font-family: var(--font-sans);
   min-height: 100vh;
@@ -131,7 +134,7 @@ img {
 /* Gold divider */
 .gold-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.20), transparent);
+  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.30), transparent);
 }
 
 /* Project grid */
