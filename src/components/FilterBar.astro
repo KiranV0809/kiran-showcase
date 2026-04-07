@@ -86,4 +86,16 @@ const chips = ['All', 'AI / Agents', 'Backend', 'Full Stack'];
     color: var(--color-gold);
     background: rgba(201, 168, 76, 0.06);
   }
+
+  /* ── Mobile ─────────────────────────────── */
+  @media (max-width: 600px) {
+    .filter-bar {
+      padding: 0.85rem 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-label { margin-right: 0; width: 100%; }
+    .chips { flex-wrap: wrap; }
+    .chip { padding: 5px 12px; }
+  }
 </style>

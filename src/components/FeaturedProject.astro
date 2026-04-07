@@ -328,4 +328,38 @@ const { project } = Astro.props;
     color: var(--color-text);
     transform: translateY(-2px);
   }
+
+  /* ── Tablet ─────────────────────────────── */
+  @media (max-width: 900px) {
+    .featured {
+      grid-template-columns: 1fr 1fr;
+      min-height: 300px;
+    }
+    .featured-content { padding: 2rem 1.75rem; }
+    .ghost-number { font-size: 60px; }
+    .featured-title { font-size: 26px; }
+  }
+
+  /* ── Mobile ─────────────────────────────── */
+  @media (max-width: 600px) {
+    .featured {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .featured-img-panel {
+      height: 220px;
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .featured-content {
+      padding: 1.75rem 1.25rem;
+      gap: 0.6rem;
+    }
+
+    .ghost-number { font-size: 52px; }
+    .featured-title { font-size: 26px; }
+    .featured-desc { font-size: 13px; }
+  }
 </style>
