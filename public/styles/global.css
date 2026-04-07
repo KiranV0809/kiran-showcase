@@ -13,10 +13,10 @@
 
   /* Text */
   --color-text:        #E8E0D0;
-  --color-text-dim:    rgba(232, 224, 208, 0.40);
-  --color-text-muted:  rgba(232, 224, 208, 0.25);
+  --color-text-dim:    rgba(232, 224, 208, 0.72);
+  --color-text-muted:  rgba(232, 224, 208, 0.48);
   --color-text-ghost:  rgba(232, 224, 208, 0.07);
-  --color-text-nav:    rgba(232, 224, 208, 0.35);
+  --color-text-nav:    rgba(232, 224, 208, 0.58);
 
   /* Borders */
   --color-border:      rgba(232, 224, 208, 0.07);
@@ -28,8 +28,8 @@
   --color-green-glow:  rgba(76, 175, 80, 0.50);
 
   /* Ticker */
-  --color-ticker-text: rgba(232, 224, 208, 0.25);
-  --color-ticker-sep:  rgba(201, 168, 76, 0.25);
+  --color-ticker-text: rgba(232, 224, 208, 0.45);
+  --color-ticker-sep:  rgba(201, 168, 76, 0.45);
 
   /* Typography */
   --font-serif:  'Cormorant Garamond', Georgia, serif;
