@@ -1,0 +1,387 @@
+---
+---
+<section class="about">
+
+  <!-- LEFT — identity -->
+  <div class="about-left">
+    <div class="ghost-num" aria-hidden="true">01</div>
+
+    <div class="section-no">01 — About</div>
+    <h1 class="name">Saikiran<em>Vanga</em></h1>
+    <div class="title-tag">
+      <span class="tag-word">
+        <svg class="tag-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+          <polyline points="2 17 12 22 22 17"/>
+          <polyline points="2 12 12 17 22 12"/>
+        </svg>
+        Full Stack Engineer
+      </span>
+    </div>
+
+    <div class="about-stat-strip">
+      <div class="stat-item">
+        <span class="stat-num">5</span>
+        <span class="stat-lbl">Yrs Production</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-lbl">Live Builds</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">∞</span>
+        <span class="stat-lbl">More Shipping</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-divider"></div>
+
+  <!-- RIGHT — bio + stack -->
+  <div class="about-right">
+    <p class="about-bio">
+      <strong>5 years building production software</strong> in financial services.
+      I've worked on real systems that real people rely on. These days I'm also
+      deep into AI tooling and multi-agent architecture.
+    </p>
+
+    <div class="stack-header">
+      <span class="stack-label">02 — Stack</span>
+    </div>
+
+    <div class="skills-wrap">
+      <div class="skill-row">
+        <span class="skill-cat">Backend</span>
+        <div class="skill-tags">
+          <span class="stag">Java 17</span>
+          <span class="stag">Spring Boot</span>
+          <span class="stag">Node.js</span>
+          <span class="stag">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Frontend</span>
+        <div class="skill-tags">
+          <span class="stag">Angular</span>
+          <span class="stag">TypeScript</span>
+          <span class="stag">React</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Cloud &amp; Infra</span>
+        <div class="skill-tags">
+          <span class="stag gold">AWS ECS</span>
+          <span class="stag gold">S3</span>
+          <span class="stag gold">DynamoDB</span>
+          <span class="stag">Docker</span>
+          <span class="stag">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">AI &amp; Agents</span>
+        <div class="skill-tags">
+          <span class="stag gold">Claude AI</span>
+          <span class="stag gold">Multi-Agent</span>
+          <span class="stag">Railway</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    border-bottom: 2px solid #111;
+  }
+
+  /* ── Left column ─────────────────────────── */
+
+  .about-left {
+    padding: 3rem 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: fade-up 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+  }
+
+  /* Editorial ghost numeral — decorative watermark */
+  .ghost-num {
+    position: absolute;
+    bottom: -0.08em;
+    right: -0.02em;
+    font-family: var(--font-serif);
+    font-size: clamp(120px, 18vw, 190px);
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(17, 17, 17, 0.08);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.04em;
+    z-index: 0;
+    animation: fade-in 0.8s ease 0.6s both;
+  }
+
+  .section-no {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-no::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: #C9A84C;
+    transform-origin: left center;
+    animation: line-grow 0.5s cubic-bezier(0.16,1,0.3,1) 0.5s both;
+  }
+
+  .name {
+    font-family: var(--font-serif);
+    font-size: clamp(52px, 6.5vw, 80px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    color: #111;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+  }
+
+  .name em {
+    font-style: italic;
+    color: #C9A84C;
+    display: block;
+    animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.42s both;
+  }
+
+  .title-tag {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 16px;
+    border: 1px solid rgba(17, 17, 17, 0.35);
+    background: rgba(201, 168, 76, 0.07);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    animation: fade-up 0.5s cubic-bezier(0.16,1,0.3,1) 0.55s both;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+
+  .title-tag.flash {
+    border-color: #C9A84C;
+    background: rgba(201, 168, 76, 0.18);
+  }
+
+  .tag-word {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #111;
+    white-space: nowrap;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+
+  .tag-icon {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .tag-word.exit {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .tag-word.enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  /* Stat strip — editorial column layout */
+  .about-stat-strip {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-top: auto;
+    border-top: 1px solid rgba(17, 17, 17, 0.18);
+    padding-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+    animation: fade-up 0.5s cubic-bezier(0.16,1,0.3,1) 0.65s both;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+  }
+
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: 42px;
+    font-weight: 900;
+    color: #111;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-lbl {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(17, 17, 17, 0.48);
+    line-height: 1.5;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: rgba(17, 17, 17, 0.15);
+    margin: 0 1.25rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Divider ─────────────────────────────── */
+
+  .about-divider {
+    background: #111;
+    animation: fade-in 0.4s ease 0.2s both;
+  }
+
+  /* ── Right column ────────────────────────── */
+
+  .about-right {
+    padding: 3rem 2.5rem 2.5rem;
+    animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+  }
+
+  .about-bio {
+    font-size: 14.5px;
+    line-height: 1.90;
+    color: rgba(17, 17, 17, 0.62);
+    margin-bottom: 2.25rem;
+    padding-left: 1rem;
+    border-left: 2px solid #C9A84C;
+  }
+
+  .about-bio strong {
+    color: #111;
+    font-weight: 600;
+  }
+
+  /* Stack sub-label */
+  .stack-header {
+    margin-bottom: 1.1rem;
+  }
+
+  .stack-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(17, 17, 17, 0.32);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stack-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: rgba(17, 17, 17, 0.25);
+  }
+
+  .skills-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .skill-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    animation: fade-up 0.5s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  .skill-row:nth-child(1) { animation-delay: 0.40s; }
+  .skill-row:nth-child(2) { animation-delay: 0.52s; }
+  .skill-row:nth-child(3) { animation-delay: 0.64s; }
+  .skill-row:nth-child(4) { animation-delay: 0.76s; }
+
+  .skill-cat {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(17, 17, 17, 0.32);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .stag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 11px;
+    background: #111;
+    color: #F8F6F1;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .stag:hover {
+    opacity: 0.72;
+    transform: translateY(-1px);
+  }
+
+  .stag.gold {
+    background: #C9A84C;
+    color: #111;
+  }
+
+  /* ── Mobile ──────────────────────────────── */
+  @media (max-width: 640px) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+    .about-divider { display: none; }
+    .about-left {
+      padding: 2.5rem 1.25rem 0;
+    }
+    .about-right {
+      padding: 1.5rem 1.25rem 2rem;
+    }
+    .name { font-size: clamp(48px, 14vw, 64px); }
+    .ghost-num { font-size: 120px; }
+    .about-stat-strip { gap: 0; }
+  }
+</style>

@@ -1,101 +1,53 @@
 ---
-const chips = ['All', 'AI / Agents', 'Backend', 'Full Stack'];
 ---
-<div class="filter-bar">
+<div class="filter">
   <span class="filter-label">Filter</span>
-  <div class="chips">
-    {chips.map((chip, i) => (
-      <button class={`chip${i === 0 ? ' active' : ''}`} data-filter={chip}>
-        {chip}
-      </button>
-    ))}
-  </div>
+  <span class="chip filter-chip active" data-filter="all">All</span>
+  <span class="chip filter-chip" data-filter="AI / Agents">AI / Agents</span>
+  <span class="chip filter-chip" data-filter="Backend">Backend</span>
+  <span class="chip filter-chip" data-filter="Full Stack">Full Stack</span>
 </div>
 
-<script>
-  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
-  const cards = document.querySelectorAll<HTMLElement>('.project-card');
-
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-
-      const filter = chip.dataset.filter;
-
-      cards.forEach(card => {
-        if (filter === 'All') {
-          card.style.display = '';
-        } else {
-          const categories = card.dataset.category || '';
-          card.style.display = categories.includes(filter) ? '' : 'none';
-        }
-      });
-    });
-  });
-</script>
-
 <style>
-  .filter-bar {
+  .filter {
+    padding: 0.75rem 2.5rem;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.10);
     display: flex;
+    gap: 0.4rem;
     align-items: center;
-    padding: 1rem var(--pad-page-x);
-    gap: 0.5rem;
-    border-bottom: 1px solid var(--color-border);
-    animation: fade-up 0.6s var(--ease-out-expo) 1.10s both;
+    background: #F8F6F1;
   }
 
   .filter-label {
-    font-family: var(--font-sans);
+    font-family: var(--font-mono);
     font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.20em;
-    color: var(--color-text-muted);
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-right: 0.75rem;
-  }
-
-  .chips {
-    display: flex;
-    gap: 0.5rem;
+    color: rgba(17, 17, 17, 0.28);
+    margin-right: 0.5rem;
   }
 
   .chip {
-    font-family: var(--font-sans);
+    font-family: var(--font-mono);
     font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: rgba(232, 224, 208, 0.28);
+    letter-spacing: 0.10em;
     text-transform: uppercase;
-    background: transparent;
-    border: 1px solid rgba(232, 224, 208, 0.10);
-    border-radius: var(--radius-sm);
-    padding: 5px 14px;
+    padding: 4px 12px;
+    border: 1px solid rgba(17, 17, 17, 0.15);
+    color: rgba(17, 17, 17, 0.40);
     cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s;
-  }
-
-  .chip:hover {
-    border-color: var(--color-gold-dim);
-    color: var(--color-gold);
-    transform: translateY(-1px);
+    transition: all 0.15s;
+    background: transparent;
+    user-select: none;
   }
 
   .chip.active {
-    border-color: var(--color-gold);
-    color: var(--color-gold);
-    background: rgba(201, 168, 76, 0.06);
+    background: #111;
+    color: #F8F6F1;
+    border-color: #111;
   }
 
-  /* ── Mobile ─────────────────────────────── */
-  @media (max-width: 600px) {
-    .filter-bar {
-      padding: 0.85rem 1.25rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .filter-label { margin-right: 0; width: 100%; }
-    .chips { flex-wrap: wrap; }
-    .chip { padding: 5px 12px; }
+  @media (max-width: 640px) {
+    .filter { padding: 0.75rem 1.25rem; flex-wrap: wrap; }
   }
 </style>

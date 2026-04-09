@@ -1,34 +1,188 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import Ticker from '../components/Ticker.astro';
+import About from '../components/About.astro';
+import ProjectsHeader from '../components/ProjectsHeader.astro';
 import FilterBar from '../components/FilterBar.astro';
-import FeaturedProject from '../components/FeaturedProject.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Footer from '../components/Footer.astro';
 
 import projects from '../data/projects.json';
-
-const featuredProject = projects.find(p => p.featured);
-const gridProjects = projects.filter(p => !p.featured);
 ---
 
 <BaseLayout>
   <Nav />
-  <main>
-    <Hero />
-    <Ticker />
+
+  <div class="page-wrap">
+    <About />
+    <ProjectsHeader count={projects.length} />
     <FilterBar />
-    <div class="section-label">Featured Build</div>
-    {featuredProject && <FeaturedProject project={featuredProject} />}
-    <div class="gold-divider"></div>
-    <div class="section-label">All Builds</div>
+
     <div class="project-grid">
-      {gridProjects.map((project, index) => (
-        <ProjectCard project={project} index={index + 2} />
+      {projects.map((project, i) => (
+        <ProjectCard
+          project={project}
+          index={i + 1}
+          total={projects.length}
+        />
       ))}
+      <div class="card-empty">
+        <span class="empty-plus">+</span>
+        <span class="empty-label">More coming</span>
+      </div>
     </div>
-  </main>
+  </div>
+
   <Footer />
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // ── Title badge cycling ──────────────────────────────
+    var tagData = [
+      {
+        text: 'Full Stack Engineer',
+        icon: '<svg class="tag-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
+      },
+      {
+        text: 'AI &amp; Agent Builder',
+        icon: '<svg class="tag-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.09 6.26L21 10l-6.91 1.74L12 18l-2.09-6.26L3 10l6.91-1.74L12 2z"/><circle cx="5" cy="5" r="1.5"/><circle cx="19" cy="19" r="1"/></svg>'
+      },
+      {
+        text: '5 Yrs &middot; Production',
+        icon: '<svg class="tag-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>'
+      }
+    ];
+    var tagIdx   = 0;
+    var tagBadge = document.querySelector('.title-tag');
+    var tagWord  = document.querySelector('.tag-word');
+
+    if (tagBadge && tagWord) {
+      setInterval(function() {
+        tagWord.classList.add('exit');
+        tagBadge.classList.add('flash');
+
+        setTimeout(function() {
+          tagIdx = (tagIdx + 1) % tagData.length;
+          tagWord.innerHTML = tagData[tagIdx].icon + tagData[tagIdx].text;
+          tagWord.classList.remove('exit');
+          tagWord.classList.add('enter');
+
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              tagWord.classList.remove('enter');
+              setTimeout(function() { tagBadge.classList.remove('flash'); }, 300);
+            });
+          });
+        }, 230);
+      }, 2600);
+    }
+
+    // ── Scroll-reveal for .reveal elements ──────────────
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          // stagger by DOM index among sibling .reveal elements
+          var siblings = Array.from(el.parentElement.querySelectorAll('.reveal'));
+          var idx = siblings.indexOf(el);
+          el.style.transitionDelay = (idx * 0.09) + 's';
+          el.classList.add('visible');
+          revealObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    // ── Screenshot sliders ───────────────────────────────
+    document.querySelectorAll('.ss-wrap').forEach(function(wrap) {
+      var track  = wrap.querySelector('.ss-track');
+      var dots   = wrap.querySelectorAll('.ss-dot');
+      var slides = wrap.querySelectorAll('.ss-slide');
+      var total  = slides.length;
+      var current = 0;
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function(d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      var prev = wrap.querySelector('.ss-prev');
+      var next = wrap.querySelector('.ss-next');
+
+      if (prev) prev.addEventListener('click', function(e) {
+        e.stopPropagation();
+        goTo(current - 1);
+      });
+
+      if (next) next.addEventListener('click', function(e) {
+        e.stopPropagation();
+        goTo(current + 1);
+      });
+
+      dots.forEach(function(dot, i) {
+        dot.addEventListener('click', function() { goTo(i); });
+      });
+    });
+
+    // ── Filter chips ─────────────────────────────────────
+    document.querySelectorAll('.filter-chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        document.querySelectorAll('.filter-chip').forEach(function(c) {
+          c.classList.remove('active');
+        });
+        chip.classList.add('active');
+
+        var filter = chip.dataset.filter;
+        document.querySelectorAll('.project-card[data-category]').forEach(function(card) {
+          var show = filter === 'all' || card.dataset.category === filter;
+          card.style.display = show ? 'flex' : 'none';
+        });
+      });
+    });
+
+  });
+</script>
+
+<style>
+  .card-empty {
+    border-left: 1px solid rgba(17, 17, 17, 0.10);
+    background: rgba(17, 17, 17, 0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    gap: 0.75rem;
+  }
+
+  .empty-plus {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(17, 17, 17, 0.28);
+    line-height: 1;
+    border: 1px solid rgba(17, 17, 17, 0.18);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .empty-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: rgba(17, 17, 17, 0.40);
+  }
+</style>

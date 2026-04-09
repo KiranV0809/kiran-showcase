@@ -1,137 +1,119 @@
 ---
 ---
 <nav class="nav">
-  <a href="/" class="logo">kiran<em class="em">.</em>dev</a>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#projects" class="nav-link">Work</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="https://github.com/KiranV0809" class="nav-link" target="_blank" rel="noopener">GitHub ↗</a></li>
-    </ul>
-    <div class="badge">
-      <span class="dot"></span>
-      <span class="badge-text">Open to Work</span>
-    </div>
-  </div>
+  <span class="nav-logo">kiranv0809<span class="dot">.</span>dev</span>
+
+  <ul class="nav-links">
+    <li>
+      <a href="https://www.linkedin.com/in/saikiranvanga/" target="_blank" rel="noopener" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/KiranV0809" target="_blank" rel="noopener" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        GitHub
+      </a>
+    </li>
+    <li>
+      <a href="mailto:kiransaiv99@gmail.com" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Email
+      </a>
+    </li>
+  </ul>
+
+  <div class="nav-badge">Open to Work</div>
 </nav>
 
 <style>
   .nav {
+    background: #111;
+    color: #F8F6F1;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 3rem;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 52px;
     position: sticky;
     top: 0;
     z-index: 20;
-    background: rgba(8, 8, 8, 0.96);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--color-border);
-    animation: fade-up 0.6s var(--ease-out-expo) 0.1s both;
+    animation: fade-in 0.5s ease both;
   }
 
-  .logo {
-    font-family: var(--font-serif);
-    font-size: 21px;
-    font-weight: 300;
-    letter-spacing: 0.14em;
-    color: var(--color-text);
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: #F8F6F1;
     text-decoration: none;
-    flex-shrink: 0;
   }
 
-  .logo .em {
-    color: var(--color-gold);
-    font-style: italic;
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: var(--gap-nav-right);
+  .nav-logo .dot {
+    color: #C9A84C;
   }
 
   .nav-links {
     display: flex;
-    align-items: center;
-    gap: var(--gap-nav);
+    gap: 1.75rem;
     list-style: none;
+    align-items: center;
   }
 
   .nav-link {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.20em;
-    color: var(--color-text-nav);
-    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    position: relative;
-    transition: color 0.3s var(--ease-out-expo);
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--color-gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s var(--ease-out-expo);
-  }
-
-  .nav-link:hover { color: var(--color-gold); }
-  .nav-link:hover::after { transform: scaleX(1); }
-
-  .badge {
+    color: rgba(248, 246, 241, 0.45);
+    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 7px;
-    border: 1px solid rgba(232, 224, 208, 0.10);
-    border-radius: var(--radius-sm);
-    padding: 5px 12px;
-    cursor: default;
-    transition: border-color 0.25s, color 0.25s;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .nav-link svg {
+    opacity: 0.6;
+    transition: opacity 0.2s;
     flex-shrink: 0;
   }
 
-  .badge:hover { border-color: rgba(76, 175, 80, 0.40); }
-  .badge:hover .badge-text { color: rgba(76, 175, 80, 0.80); }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-green);
-    animation: pulse-dot 2s ease infinite;
-    flex-shrink: 0;
+  .nav-link:hover {
+    color: #C9A84C;
   }
 
-  .badge-text {
-    font-family: var(--font-sans);
+  .nav-link:hover svg {
+    opacity: 1;
+  }
+
+  .nav-badge {
+    font-family: var(--font-mono);
     font-size: 10px;
-    font-weight: 500;
     letter-spacing: 0.12em;
-    color: var(--color-text-nav);
     text-transform: uppercase;
-    transition: color 0.25s;
+    background: #C9A84C;
+    color: #111;
+    padding: 5px 12px;
+    font-weight: 500;
   }
 
-  /* ── Tablet ─────────────────────────────── */
-  @media (max-width: 900px) {
-    .nav { padding: 1rem 1.5rem; }
-    .nav-right { gap: 1.25rem; }
-    .nav-links { gap: 1.25rem; }
-  }
-
-  /* ── Mobile ─────────────────────────────── */
-  @media (max-width: 600px) {
-    .nav { padding: 1rem 1.25rem; }
-    .nav-links { display: none; }        /* hide text links — page is one scroll */
-    .badge-text { display: none; }       /* keep dot only to save space */
-    .badge { padding: 5px 8px; gap: 0; }
+  @media (max-width: 640px) {
+    .nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
   }
 </style>

@@ -1,0 +1,225 @@
+---
+interface Slide {
+  image: string;
+  label: string;
+}
+
+interface Props {
+  slides: Slide[];
+  projectId: string;
+  slideTheme: string;
+}
+
+const { slides, projectId, slideTheme } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="ss-wrap" id={`ss-${projectId}`}>
+  <div class="ss-track" id={`track-${projectId}`}>
+    {slides.map((slide) => (
+      <div class={`ss-slide ${slideTheme}`}>
+        {slide.image ? (
+          <img src={`${base}${slide.image}`} alt={slide.label} loading="lazy" />
+        ) : (
+          <div class="mock-screen">
+            <div class="mock-bar">
+              <span class="mock-dot" style="background:#FF5F57"></span>
+              <span class="mock-dot" style="background:#FEBC2E"></span>
+              <span class="mock-dot" style="background:#28C840"></span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-line gold"></div>
+              <div class="mock-line long"></div>
+              <div class="mock-line medium"></div>
+              <div class="mock-line short"></div>
+            </div>
+          </div>
+        )}
+        <span class="ss-label">{slide.label}</span>
+      </div>
+    ))}
+  </div>
+
+  <div class="ss-nav">
+    <button class="ss-btn ss-prev" aria-label="Previous screenshot">&#8592;</button>
+    <button class="ss-btn ss-next" aria-label="Next screenshot">&#8594;</button>
+  </div>
+
+  <div class="ss-dots">
+    {slides.map((_, i) => (
+      <span class={`ss-dot${i === 0 ? ' active' : ''}`}></span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .ss-wrap {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.10);
+  }
+
+  .ss-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ss-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ss-slide.resume-tailor { background: #0F0F0F; }
+  .ss-slide.cricket-bot   { background: #141820; }
+  .ss-slide.flick-finder  { background: #1A100A; }
+
+  .ss-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    padding: 10px;
+  }
+
+  /* Bottom gradient so dots and label stay readable over image */
+  .ss-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .ss-label {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.65);
+    color: rgba(255, 255, 255, 0.80);
+    padding: 3px 10px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 2;
+    white-space: nowrap;
+  }
+
+  .ss-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .ss-btn {
+    width: 26px;
+    height: 26px;
+    background: rgba(0, 0, 0, 0.40);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: all;
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 11px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1;
+    font-family: inherit;
+  }
+
+  .ss-btn:hover {
+    background: rgba(201, 168, 76, 0.75);
+    border-color: transparent;
+    color: #111;
+  }
+
+  .ss-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 2;
+  }
+
+  .ss-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.20);
+    transition: background 0.2s, width 0.2s;
+  }
+
+  .ss-dot.active {
+    background: #C9A84C;
+    width: 14px;
+    border-radius: 3px;
+  }
+
+  /* Mock browser fallback */
+  .mock-screen {
+    width: 78%;
+    height: 74%;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mock-bar {
+    height: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .mock-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .mock-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .mock-line {
+    height: 5px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .mock-line.gold   { background: rgba(201, 168, 76, 0.45); width: 50%; }
+  .mock-line.long   { width: 88%; }
+  .mock-line.medium { width: 72%; }
+  .mock-line.short  { width: 38%; }
+</style>

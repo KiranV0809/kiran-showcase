@@ -1,315 +1,182 @@
 ---
+import ScreenshotSlider from './ScreenshotSlider.astro';
+
 interface Tag {
   label: string;
   gold: boolean;
 }
 
+interface Slide {
+  image: string;
+  label: string;
+}
+
 interface Project {
   id: string;
   title: string;
-  oneliner: string;
+  hook: string;
   description: string;
-  category: string[];
+  serves: string;
+  category: string;
   tags: Tag[];
-  github: string;
-  demo: string;
-  screenshot: string;
-  screenshotAlt: string;
+  slides: Slide[];
+  slideTheme: string;
 }
 
 interface Props {
   project: Project;
   index: number;
+  total: number;
 }
 
-const { project, index } = Astro.props;
-
-const indexStr = index.toString().padStart(2, '0');
+const { project, index, total } = Astro.props;
 ---
+
 <article
   class="project-card reveal"
-  data-category={project.category.join(',')}
+  data-category={project.category}
 >
-  <!-- Image zone -->
-  <div class="card-img-zone">
-    {project.screenshot ? (
-      <img
-        src={project.screenshot}
-        alt={project.screenshotAlt}
-        class="card-screenshot"
-      />
-    ) : (
-      <div class="card-screen-mockup">
-        <div class="mac-dots">
-          <span class="mac-dot red"></span>
-          <span class="mac-dot yellow"></span>
-          <span class="mac-dot green"></span>
-        </div>
-        <div class="screen-content">
-          <div class="screen-line gold-line"></div>
-          <div class="screen-line full-line"></div>
-          <div class="screen-line full-line"></div>
-          <div class="screen-line short-line"></div>
-          <div class="screen-line pulse-line"></div>
-          <div class="screen-line full-line"></div>
-        </div>
-      </div>
-    )}
-    <div class="card-img-overlay"></div>
+  <ScreenshotSlider
+    slides={project.slides}
+    projectId={project.id}
+    slideTheme={project.slideTheme}
+  />
+
+  <div class="card-top">
+    <div class="card-no">{String(index).padStart(2, '0')} / {String(total).padStart(2, '0')}</div>
+    <h2 class="card-title">{project.title}</h2>
+    <p class="card-hook">{project.hook}</p>
   </div>
 
-  <!-- Card body -->
-  <div class="card-body">
-    <span class="card-index">{indexStr}</span>
-    <h3 class="card-title">{project.title}</h3>
-    <p class="card-oneliner">{project.oneliner}</p>
-    <p class="card-desc">{project.description}</p>
+  <p class="card-desc">{project.description}</p>
+
+  <div class="card-serves">
+    <span class="serves-label">Serves</span>
+    <span class="serves-text">{project.serves}</span>
   </div>
 
-  <!-- Card footer -->
   <div class="card-footer">
-    <div class="card-tags">
+    <div class="tech-tags">
       {project.tags.map(tag => (
-        <span class={`card-tag${tag.gold ? ' gold' : ''}`}>{tag.label}</span>
+        <span class={`tag${tag.gold ? ' gold' : ''}`}>{tag.label}</span>
       ))}
     </div>
-    <a
-      href={project.github || '#'}
-      target={project.github ? '_blank' : undefined}
-      rel="noopener"
-      class="card-arrow"
-      aria-label={`View ${project.title}`}
-    >↗</a>
   </div>
 </article>
 
 <style>
   .project-card {
+    border-right: 1px solid rgba(17, 17, 17, 0.10);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.10);
+    background: #F8F6F1;
     display: flex;
     flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    background: var(--color-surface);
-    border-right: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    transition: background 0.25s ease, transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s ease,
+                /* inherit reveal transition */
+                opacity 0.55s cubic-bezier(0.16,1,0.3,1);
   }
 
   .project-card:nth-child(2n) {
     border-right: none;
   }
 
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-gold);
-    transition: width 0.4s var(--ease-out-expo);
-    z-index: 2;
+  .project-card:last-child {
+    border-bottom: none;
   }
 
-  .project-card:hover::before {
-    width: 100%;
-  }
-
-  /* Image zone */
-  .card-img-zone {
-    height: 195px;
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card-screenshot {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .card-img-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(201, 168, 76, 0.06), transparent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
+  .project-card:hover {
+    background: #FFFFFF;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(17, 17, 17, 0.09);
     z-index: 1;
-  }
-
-  .project-card:hover .card-img-overlay {
-    opacity: 1;
-  }
-
-  /* Decorative mockup */
-  .card-screen-mockup {
     position: relative;
-    width: 75%;
-    height: 70%;
-    border: 1px solid rgba(232, 224, 208, 0.08);
-    border-radius: var(--radius-md);
-    background: var(--color-surface-2);
-    overflow: hidden;
   }
 
-  .card-screen-mockup::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.3), transparent);
+  .card-top {
+    padding: 1.1rem 1.5rem 0.6rem;
   }
 
-  .mac-dots {
-    display: flex;
-    gap: 4px;
-    padding: 5px 0 0 8px;
-  }
-
-  .mac-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-  }
-
-  .mac-dot.red    { background: #FF5F57; }
-  .mac-dot.yellow { background: #FEBC2E; }
-  .mac-dot.green  { background: #28C840; }
-
-  .screen-content {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 20px 12px 12px;
-  }
-
-  .screen-line {
-    height: 2px;
-    border-radius: 1px;
-  }
-
-  .gold-line  { width: 45%; background: rgba(201, 168, 76, 0.20); }
-  .full-line  { width: 100%; background: rgba(232, 224, 208, 0.05); }
-  .short-line { width: 65%; background: rgba(232, 224, 208, 0.05); }
-
-  .pulse-line {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(201, 168, 76, 0.4),
-      transparent
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2.5s linear infinite;
-  }
-
-  /* Card body */
-  .card-body {
-    padding: 1.5rem 1.75rem 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .card-index {
-    font-family: var(--font-serif);
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(232, 224, 208, 0.38);
+  .card-no {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: rgba(17, 17, 17, 0.28);
+    margin-bottom: 0.3rem;
   }
 
   .card-title {
     font-family: var(--font-serif);
-    font-size: 24px;
-    font-weight: 400;
-    color: var(--color-text);
-    line-height: 1.2;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #111;
+    margin-bottom: 0.25rem;
   }
 
-  .card-oneliner {
-    font-family: var(--font-sans);
+  .card-hook {
+    font-family: var(--font-mono);
     font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.10em;
-    color: rgba(201, 168, 76, 0.85);
+    letter-spacing: 0.08em;
+    color: #C9A84C;
     text-transform: uppercase;
   }
 
   .card-desc {
-    font-family: var(--font-sans);
-    font-size: 12px;
-    font-weight: 400;
+    padding: 0 1.5rem 0.75rem;
+    font-size: 12.5px;
     line-height: 1.75;
-    color: rgba(232, 224, 208, 0.65);
+    color: rgba(17, 17, 17, 0.68);
   }
 
-  /* Card footer */
-  .card-footer {
+  .card-serves {
+    padding: 0 1.5rem 0.6rem;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.85rem 1.75rem;
-    border-top: 1px solid var(--color-border);
-    margin-top: auto;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
-  .card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-tags);
-  }
-
-  .card-tag {
-    font-family: var(--font-sans);
+  .serves-label {
+    font-family: var(--font-mono);
     font-size: 9px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: rgba(232, 224, 208, 0.52);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    background: rgba(232, 224, 208, 0.05);
-    border: 1px solid rgba(232, 224, 208, 0.12);
-    border-radius: var(--radius-sm);
-    padding: 2px 7px;
+    color: rgba(17, 17, 17, 0.40);
+    white-space: nowrap;
+    padding-top: 2px;
   }
 
-  .card-tag.gold {
-    color: rgba(201, 168, 76, 0.88);
-    border-color: rgba(201, 168, 76, 0.28);
-    background: rgba(201, 168, 76, 0.06);
+  .serves-text {
+    font-size: 12px;
+    color: rgba(17, 17, 17, 0.60);
+    line-height: 1.5;
+    font-style: italic;
   }
 
-  .card-arrow {
-    font-size: 15px;
-    color: rgba(232, 224, 208, 0.32);
-    text-decoration: none;
-    transition: all 0.25s var(--ease-out-expo);
-    flex-shrink: 0;
+  .card-footer {
+    padding: 0.75rem 1.5rem;
+    border-top: 1px solid rgba(17, 17, 17, 0.07);
+    margin-top: auto;
+    display: flex;
   }
 
-  .project-card:hover .card-arrow {
-    color: var(--color-gold);
-    transform: translate(4px, -4px);
+  .tech-tags {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
   }
 
-  /* ── Mobile ─────────────────────────────── */
-  @media (max-width: 600px) {
-    .card-img-zone { height: 160px; }
-    .card-body { padding: 1.25rem 1.25rem 0.75rem; }
-    .card-footer { padding: 0.75rem 1.25rem; }
-    .card-title { font-size: 22px; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    background: #111;
+    color: #F8F6F1;
+  }
 
-    /* Remove right border so single-column cards don't have orphan border */
-    .project-card { border-right: none; }
+  .tag.gold {
+    background: #C9A84C;
+    color: #111;
   }
 </style>

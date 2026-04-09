@@ -1,61 +1,54 @@
 :root {
   /* Backgrounds */
-  --color-bg:          #080808;
-  --color-surface:     #141414;   /* raised — was #0D0D0D, now clearly distinct from bg */
-  --color-surface-2:   #1A1A1A;   /* raised — was #111111 */
-  --color-surface-3:   #0F0F0F;   /* ticker — was #0A0A0A */
+  --bg-page:       #F8F6F1;
+  --bg-body:       #F8F6F1;   /* matches page — no pamphlet margins */
+  --bg-nav:        #111111;
+  --bg-card:       #F8F6F1;
+  --bg-card-hover: #FFFFFF;
+  --bg-empty:      rgba(17,17,17,0.015);
+
+  /* Card image backgrounds */
+  --bg-img-dark:   #0F0F0F;
+  --bg-img-slate:  #141820;
+  --bg-img-warm:   #1A100A;
 
   /* Gold */
-  --color-gold:        #C9A84C;
-  --color-gold-dim:    rgba(201, 168, 76, 0.40);
-  --color-gold-glow:   rgba(201, 168, 76, 0.07);
-  --color-gold-faint:  rgba(201, 168, 76, 0.05);
+  --gold:          #C9A84C;
+  --gold-bg:       rgba(201, 168, 76, 0.12);
+  --gold-text:     rgba(140, 105, 20, 0.90);
 
   /* Text */
-  --color-text:        #E8E0D0;
-  --color-text-dim:    rgba(232, 224, 208, 0.72);
-  --color-text-muted:  rgba(232, 224, 208, 0.48);
-  --color-text-ghost:  rgba(232, 224, 208, 0.07);
-  --color-text-nav:    rgba(232, 224, 208, 0.58);
+  --text-primary:  #111111;
+  --text-dim:      rgba(17, 17, 17, 0.60);
+  --text-muted:    rgba(17, 17, 17, 0.35);
+  --text-ghost:    rgba(17, 17, 17, 0.18);
 
-  /* Borders — raised so sections are visibly separated */
-  --color-border:      rgba(232, 224, 208, 0.12);
-  --color-border-md:   rgba(232, 224, 208, 0.20);
-  --color-border-hover:rgba(232, 224, 208, 0.40);
+  /* On dark */
+  --text-on-dark:       #F8F6F1;
+  --text-on-dark-dim:   rgba(248, 246, 241, 0.40);
+  --text-on-dark-muted: rgba(248, 246, 241, 0.28);
 
-  /* Status */
-  --color-green:       #4CAF50;
-  --color-green-glow:  rgba(76, 175, 80, 0.50);
+  /* Borders */
+  --border:        rgba(17, 17, 17, 0.10);
+  --border-dark:   #111111;
 
-  /* Ticker */
-  --color-ticker-text: rgba(232, 224, 208, 0.45);
-  --color-ticker-sep:  rgba(201, 168, 76, 0.45);
+  /* Skill tags */
+  --tag-bg:        #111111;
+  --tag-text:      #F8F6F1;
+  --tag-gold-bg:   #C9A84C;
+  --tag-gold-text: #111111;
+
+  /* Slider dots */
+  --dot-inactive:  rgba(255, 255, 255, 0.20);
+  --dot-active:    #C9A84C;
 
   /* Typography */
-  --font-serif:  'Cormorant Garamond', Georgia, serif;
-  --font-sans:   'Syne', system-ui, sans-serif;
-
-  /* Spacing */
-  --pad-page-x:    3rem;
-  --pad-hero-y:    5.5rem;
-  --pad-hero-b:    4.5rem;
-  --pad-section-y: 0.7rem;
-
-  /* Component spacing */
-  --gap-hero:      5rem;
-  --gap-stats:     1px;
-  --gap-grid:      0px;
-  --gap-tags:      0.35rem;
-  --gap-nav:       2rem;
-  --gap-nav-right: 2.5rem;
-
-  /* Border radii */
-  --radius-sm:     2px;
-  --radius-md:     4px;
-  --radius-lg:     6px;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+  --font-mono:  'DM Mono', 'Courier New', monospace;
 
   /* Easing */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after {
@@ -65,20 +58,17 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--color-bg);
-  /* Subtle warm depth — barely-there radial glow at the top center */
-  background-image:
-    radial-gradient(ellipse 100% 40% at 50% 0%, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
-  color: var(--color-text);
+  background: #F8F6F1;   /* same as page — eliminates side margins */
+  color: #111;
   font-family: var(--font-sans);
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 img {
@@ -86,55 +76,19 @@ img {
   display: block;
 }
 
-/* Scroll reveal base state */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Featured reveal — slightly slower */
-.featured-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-}
-
-.featured-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Section label */
-.section-label {
-  padding: var(--pad-section-y) var(--pad-page-x);
-  border-bottom: 1px solid var(--color-border);
-  font-family: var(--font-sans);
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.section-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--color-border);
-}
-
-/* Gold divider */
-.gold-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.30), transparent);
+/* Page wrap — still constrains to 1080px, now borderless */
+.page-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: #F8F6F1;
+  min-height: 100vh;
 }
 
 /* Project grid */
@@ -143,13 +97,38 @@ img {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* ── Responsive globals ──────────────────── */
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .project-grid {
     grid-template-columns: 1fr;
   }
+}
 
-  .section-label {
-    padding: var(--pad-section-y) 1.25rem;
-  }
+/* ─── Keyframes ──────────────────────────────── */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ─── Scroll-reveal (toggled by IntersectionObserver) ── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

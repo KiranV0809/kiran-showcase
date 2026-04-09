@@ -1,0 +1,43 @@
+---
+interface Props {
+  count: number;
+}
+const { count } = Astro.props;
+---
+<div class="proj-header">
+  <span class="proj-title">Selected Projects</span>
+  <span class="proj-count">02 — Work · {count} builds</span>
+</div>
+
+<style>
+  .proj-header {
+    padding: 1.25rem 2.5rem;
+    background: #111;
+    border-bottom: 2px solid #111;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .proj-title {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: #F8F6F1;
+    font-style: italic;
+  }
+
+  .proj-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: rgba(248, 246, 241, 0.75);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .proj-header { padding: 1rem 1.25rem; }
+    .proj-title { font-size: 22px; }
+  }
+</style>
