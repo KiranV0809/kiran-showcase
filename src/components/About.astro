@@ -41,6 +41,8 @@
 
   <!-- RIGHT — bio + stack -->
   <div class="about-right">
+    <p class="about-tagline">Backend-first. Full stack in practice. Production-obsessed.</p>
+
     <p class="about-bio">
       <strong>5 years building production software</strong> in financial services.
       I've worked on real systems that real people rely on. These days I'm also
@@ -48,7 +50,7 @@
     </p>
 
     <div class="stack-header">
-      <span class="stack-label">02 — Stack</span>
+      <span class="stack-label">Stack</span>
     </div>
 
     <div class="skills-wrap">
@@ -96,7 +98,7 @@
   .about {
     display: grid;
     grid-template-columns: 1fr 1px 1fr;
-    border-bottom: 2px solid #111;
+    border-bottom: var(--border-section);
   }
 
   /* ── Left column ─────────────────────────── */
@@ -226,7 +228,7 @@
     align-items: stretch;
     gap: 0;
     margin-top: auto;
-    border-top: 1px solid rgba(17, 17, 17, 0.18);
+    border-top: 1px solid rgba(17, 17, 17, 0.10);
     padding-top: 1.5rem;
     position: relative;
     z-index: 1;
@@ -277,6 +279,16 @@
   .about-right {
     padding: 3rem 2.5rem 2.5rem;
     animation: fade-up 0.7s cubic-bezier(0.16,1,0.3,1) 0.25s both;
+  }
+
+  .about-tagline {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+    color: #111;
+    margin-bottom: 1rem;
+    line-height: 1.4;
   }
 
   .about-bio {
@@ -340,7 +352,7 @@
     font-size: 9px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(17, 17, 17, 0.32);
+    color: rgba(17, 17, 17, 0.65);
   }
 
   .skill-tags {

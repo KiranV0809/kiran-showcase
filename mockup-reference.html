@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>kiranv0809.dev — Design Mockup Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#E0DBD3;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;}
+
+/* PAGE WRAP — THE CRITICAL RULE */
+.page-wrap{max-width:1080px;margin:0 auto;background:#F8F6F1;border-left:1px solid rgba(17,17,17,0.10);border-right:1px solid rgba(17,17,17,0.10);min-height:100vh;}
+
+/* NAV — full width, outside page-wrap */
+.nav{background:#111;color:#F8F6F1;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:52px;position:sticky;top:0;z-index:20;}
+.nav-logo{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.06em;color:#F8F6F1;}
+.nav-logo span{color:#C9A84C;}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
+.nav-link{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(248,246,241,0.45);cursor:pointer;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+.nav-link:hover{color:#C9A84C;}
+.nav-link svg{opacity:0.6;transition:opacity 0.2s;flex-shrink:0;}
+.nav-link:hover svg{opacity:1;}
+.nav-badge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;background:#C9A84C;color:#111;padding:5px 12px;font-weight:500;}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1px 1fr;border-bottom:2px solid #111;}
+.about-left{padding:2.5rem;}
+.about-divider{background:#111;}
+.about-right{padding:2.5rem;}
+.section-no{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem;}
+.section-no::before{content:'';display:inline-block;width:20px;height:1px;background:#C9A84C;}
+.name{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;line-height:0.95;letter-spacing:-0.02em;color:#111;margin-bottom:0.75rem;}
+.name em{font-style:italic;color:#C9A84C;display:block;}
+.title-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(17,17,17,0.35);}
+.about-bio{font-size:14.5px;line-height:1.85;color:rgba(17,17,17,0.60);margin-bottom:2rem;}
+.about-bio strong{color:#111;font-weight:600;}
+.skills-wrap{display:flex;flex-direction:column;gap:1.1rem;}
+.skill-row{display:flex;flex-direction:column;gap:0.4rem;}
+.skill-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(17,17,17,0.32);}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.stag{font-family:'DM Mono',monospace;font-size:11px;padding:4px 11px;background:#111;color:#F8F6F1;}
+.stag.gold{background:#C9A84C;color:#111;}
+
+/* PROJECTS HEADER */
+.proj-header{padding:1.25rem 2.5rem;background:#111;border-bottom:2px solid #111;display:flex;align-items:baseline;justify-content:space-between;}
+.proj-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#F8F6F1;font-style:italic;}
+.proj-count{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;color:rgba(248,246,241,0.35);text-transform:uppercase;}
+
+/* FILTER */
+.filter{padding:0.75rem 2.5rem;border-bottom:1px solid rgba(17,17,17,0.10);display:flex;gap:0.4rem;align-items:center;background:#F8F6F1;}
+.filter-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,17,17,0.28);margin-right:0.5rem;}
+.chip{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.10em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(17,17,17,0.15);color:rgba(17,17,17,0.40);cursor:pointer;transition:all 0.15s;}
+.chip.active{background:#111;color:#F8F6F1;border-color:#111;}
+
+/* GRID */
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);}
+.project-card{border-right:1px solid rgba(17,17,17,0.10);border-bottom:1px solid rgba(17,17,17,0.10);background:#F8F6F1;display:flex;flex-direction:column;transition:background 0.2s;}
+.project-card:nth-child(2n){border-right:none;}
+.project-card:last-child{border-bottom:none;}
+.project-card:hover{background:#FFF;}
+
+/* SCREENSHOT SLIDER */
+.ss-wrap{position:relative;width:100%;height:210px;overflow:hidden;border-bottom:1px solid rgba(17,17,17,0.10);}
+.ss-track{display:flex;height:100%;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+.ss-slide{flex:0 0 100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
+.ss-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.ss-label{position:absolute;top:10px;right:10px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.10em;text-transform:uppercase;background:rgba(0,0,0,0.50);color:rgba(255,255,255,0.40);padding:3px 8px;border-radius:2px;z-index:2;}
+.ss-nav{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 8px;z-index:3;pointer-events:none;}
+.ss-btn{width:26px;height:26px;background:rgba(0,0,0,0.40);border:1px solid rgba(255,255,255,0.10);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;color:rgba(255,255,255,0.60);font-size:11px;transition:all 0.15s;line-height:1;}
+.ss-btn:hover{background:rgba(201,168,76,0.75);border-color:transparent;color:#111;}
+.ss-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:2;}
+.ss-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.20);transition:background 0.2s,width 0.2s;}
+.ss-dot.active{background:#C9A84C;width:14px;border-radius:3px;}
+
+/* mock browser fallback */
+.mock-screen{width:78%;height:74%;border:1px solid rgba(255,255,255,0.07);border-radius:5px;overflow:hidden;display:flex;flex-direction:column;}
+.mock-bar{height:24px;background:rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;padding:0 10px;gap:5px;flex-shrink:0;}
+.mock-dot{width:6px;height:6px;border-radius:50%;}
+.mock-body{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1;}
+.ll{height:5px;border-radius:2px;background:rgba(255,255,255,0.06);}
+.ll.g{background:rgba(201,168,76,0.45);width:50%;}
+.ll.gr{background:rgba(76,175,80,0.45);width:45%;}
+.ll.l{width:88%;}
+.ll.m{width:72%;}
+.ll.s{width:38%;}
+
+/* CARD CONTENT */
+.card-top{padding:1.1rem 1.5rem 0.6rem;}
+.card-no{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;color:rgba(17,17,17,0.28);margin-bottom:0.3rem;}
+.card-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;line-height:1.15;color:#111;margin-bottom:0.25rem;}
+.card-hook{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#C9A84C;text-transform:uppercase;}
+.card-desc{padding:0 1.5rem 0.75rem;font-size:12.5px;line-height:1.75;color:rgba(17,17,17,0.50);}
+.card-serves{padding:0 1.5rem 0.6rem;display:flex;align-items:flex-start;gap:0.5rem;}
+.serves-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(17,17,17,0.28);white-space:nowrap;padding-top:2px;}
+.serves-text{font-size:12px;color:rgba(17,17,17,0.45);line-height:1.5;font-style:italic;}
+.card-footer{padding:0.75rem 1.5rem;border-top:1px solid rgba(17,17,17,0.07);margin-top:auto;display:flex;}
+.tech-tags{display:flex;gap:0.3rem;flex-wrap:wrap;}
+.tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;padding:2px 7px;background:rgba(17,17,17,0.06);color:rgba(17,17,17,0.45);}
+.tag.gold{background:rgba(201,168,76,0.12);color:rgba(140,105,20,0.90);}
+
+/* EMPTY CARD */
+.card-empty{border-left:1px solid rgba(17,17,17,0.10);background:rgba(17,17,17,0.015);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px;gap:0.5rem;}
+.empty-plus{font-family:'DM Mono',monospace;font-size:32px;color:rgba(17,17,17,0.07);line-height:1;}
+.empty-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(17,17,17,0.18);}
+
+/* FOOTER — full width, outside page-wrap */
+.footer{background:#111;color:#F8F6F1;padding:1.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:2px solid #C9A84C;}
+.footer-left{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;color:rgba(248,246,241,0.30);}
+.footer-left span{color:#C9A84C;}
+.footer-links{display:flex;gap:1.5rem;align-items:center;}
+.fl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(248,246,241,0.30);cursor:pointer;display:flex;align-items:center;gap:5px;}
+.fl:hover{color:#C9A84C;}
+</style>
+</head>
+<body>
+
+<!-- NAV — full width -->
+<nav class="nav">
+  <span class="nav-logo">kiranv0809<span>.</span>dev</span>
+  <ul class="nav-links">
+    <li class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </li>
+    <li class="nav-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </li>
+  </ul>
+  <div class="nav-badge">Open to Work</div>
+</nav>
+
+<!-- PAGE WRAP — everything inside here is max 1080px centered -->
+<div class="page-wrap">
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-left">
+      <div class="section-no">01 — About</div>
+      <h1 class="name">Saikiran<em>Vanga</em></h1>
+      <p class="title-tag">Full Stack Engineer</p>
+    </div>
+    <div class="about-divider"></div>
+    <div class="about-right">
+      <p class="about-bio"><strong>5 years building production software</strong> in financial services. I've worked on real systems that real people rely on. These days I'm also deep into AI tooling and multi-agent architecture.</p>
+      <div class="skills-wrap">
+        <div class="skill-row">
+          <span class="skill-cat">Backend</span>
+          <div class="skill-tags"><span class="stag">Java 17</span><span class="stag">Spring Boot</span><span class="stag">Node.js</span><span class="stag">REST APIs</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Frontend</span>
+          <div class="skill-tags"><span class="stag">Angular</span><span class="stag">TypeScript</span><span class="stag">React</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Cloud &amp; Infra</span>
+          <div class="skill-tags"><span class="stag gold">AWS ECS</span><span class="stag gold">S3</span><span class="stag gold">DynamoDB</span><span class="stag">Docker</span><span class="stag">GitHub Actions</span></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">AI &amp; Agents</span>
+          <div class="skill-tags"><span class="stag gold">Claude AI</span><span class="stag gold">Multi-Agent</span><span class="stag">Railway</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <div class="proj-header">
+    <span class="proj-title">Selected Projects</span>
+    <span class="proj-count">02 — Work · 3 builds</span>
+  </div>
+
+  <div class="filter">
+    <span class="filter-label">Filter</span>
+    <span class="chip filter-chip active" data-filter="all">All</span>
+    <span class="chip filter-chip" data-filter="AI / Agents">AI / Agents</span>
+    <span class="chip filter-chip" data-filter="Backend">Backend</span>
+    <span class="chip filter-chip" data-filter="Full Stack">Full Stack</span>
+  </div>
+
+  <div class="project-grid">
+
+    <!-- CARD 1 -->
+    <article class="project-card" data-category="AI / Agents">
+      <div class="ss-wrap">
+        <div class="ss-track">
+          <div class="ss-slide" style="background:#0F0F0F;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll g"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Upload JD</span>
+          </div>
+          <div class="ss-slide" style="background:#0A0D0F;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll" style="width:60%;background:rgba(201,168,76,0.35);"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Agents at work</span>
+          </div>
+          <div class="ss-slide" style="background:#050F08;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll gr"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Tailored output</span>
+          </div>
+          <div class="ss-slide" style="background:#0D0A14;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll" style="width:55%;background:rgba(201,168,76,0.3);"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Cover letter</span>
+          </div>
+        </div>
+        <div class="ss-nav">
+          <button class="ss-btn ss-prev">&#8592;</button>
+          <button class="ss-btn ss-next">&#8594;</button>
+        </div>
+        <div class="ss-dots">
+          <span class="ss-dot active"></span><span class="ss-dot"></span><span class="ss-dot"></span><span class="ss-dot"></span>
+        </div>
+      </div>
+      <div class="card-top">
+        <div class="card-no">01 / 03</div>
+        <h2 class="card-title">Resume Tailoring Agent</h2>
+        <p class="card-hook">Paste a JD. Get a tailored resume.</p>
+      </div>
+      <p class="card-desc">A multi-agent system that reads a job description, figures out what the role is actually looking for, and rewrites your resume to match. Four agents working in sequence: analyst, rewriter, cover letter writer, quality reviewer.</p>
+      <div class="card-serves"><span class="serves-label">Serves</span><span class="serves-text">Job seekers who want to stop sending the same generic resume to every application.</span></div>
+      <div class="card-footer"><div class="tech-tags"><span class="tag gold">Claude AI</span><span class="tag gold">Multi-Agent</span><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Railway</span></div></div>
+    </article>
+
+    <!-- CARD 2 -->
+    <article class="project-card" data-category="Backend">
+      <div class="ss-wrap">
+        <div class="ss-track">
+          <div class="ss-slide" style="background:#141820;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll gr"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Live score feed</span>
+          </div>
+          <div class="ss-slide" style="background:#0C1018;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll" style="width:60%;background:rgba(201,168,76,0.4);"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">SQLite diff</span>
+          </div>
+          <div class="ss-slide" style="background:#080E14;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll gr"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Notification fired</span>
+          </div>
+        </div>
+        <div class="ss-nav">
+          <button class="ss-btn ss-prev">&#8592;</button>
+          <button class="ss-btn ss-next">&#8594;</button>
+        </div>
+        <div class="ss-dots">
+          <span class="ss-dot active"></span><span class="ss-dot"></span><span class="ss-dot"></span>
+        </div>
+      </div>
+      <div class="card-top">
+        <div class="card-no">02 / 03</div>
+        <h2 class="card-title">Cricket Score Bot</h2>
+        <p class="card-hook">Score updates without the noise.</p>
+      </div>
+      <p class="card-desc">A cron job that checks live cricket data every 15 minutes, compares it against a local SQLite snapshot, and sends a notification only when something actually changed. Built because I got tired of refreshing the browser mid-match.</p>
+      <div class="card-serves"><span class="serves-label">Serves</span><span class="serves-text">Cricket fans who want relevant match alerts without constantly checking a live tab.</span></div>
+      <div class="card-footer"><div class="tech-tags"><span class="tag gold">Cron Job</span><span class="tag gold">Diff Engine</span><span class="tag">SQLite</span><span class="tag">CricData API</span></div></div>
+    </article>
+
+    <!-- CARD 3 -->
+    <article class="project-card" data-category="Full Stack" style="border-bottom:none;">
+      <div class="ss-wrap">
+        <div class="ss-track">
+          <div class="ss-slide" style="background:#1A100A;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll g"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Search</span>
+          </div>
+          <div class="ss-slide" style="background:#150C06;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll" style="width:40%;background:rgba(201,168,76,0.35);"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Movie detail</span>
+          </div>
+          <div class="ss-slide" style="background:#0E0804;">
+            <div class="mock-screen"><div class="mock-bar"><div class="mock-dot" style="background:#FF5F57"></div><div class="mock-dot" style="background:#FEBC2E"></div><div class="mock-dot" style="background:#28C840"></div></div><div class="mock-body"><div class="ll" style="width:60%;background:rgba(201,168,76,0.3);"></div><div class="ll l"></div><div class="ll m"></div><div class="ll s"></div></div></div>
+            <span class="ss-label">Ratings &amp; cast</span>
+          </div>
+        </div>
+        <div class="ss-nav">
+          <button class="ss-btn ss-prev">&#8592;</button>
+          <button class="ss-btn ss-next">&#8594;</button>
+        </div>
+        <div class="ss-dots">
+          <span class="ss-dot active"></span><span class="ss-dot"></span><span class="ss-dot"></span>
+        </div>
+      </div>
+      <div class="card-top">
+        <div class="card-no">03 / 03</div>
+        <h2 class="card-title">Flick Finder</h2>
+        <p class="card-hook">Search a movie. Get what you need.</p>
+      </div>
+      <p class="card-desc">A movie search app built on the TMDB API. Type a title and get the rating, genre, cast and a short synopsis. Nothing more. Built because most movie apps bury the info you actually want.</p>
+      <div class="card-serves"><span class="serves-label">Serves</span><span class="serves-text">Anyone trying to quickly decide if a movie is worth watching without wading through bloated review sites.</span></div>
+      <div class="card-footer"><div class="tech-tags"><span class="tag gold">TMDB API</span><span class="tag">Search UX</span><span class="tag">REST API</span></div></div>
+    </article>
+
+    <!-- EMPTY -->
+    <div class="card-empty">
+      <span class="empty-plus">+</span>
+      <span class="empty-label">More coming</span>
+    </div>
+
+  </div>
+</div>
+<!-- END PAGE WRAP -->
+
+<!-- FOOTER — full width -->
+<footer class="footer">
+  <span class="footer-left">Built by <span>Saikiran Vanga</span> · 2025</span>
+  <div class="footer-links">
+    <span class="fl">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </span>
+    <span class="fl">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </span>
+    <span class="fl">Email ↗</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.ss-wrap').forEach(wrap=>{
+    const track=wrap.querySelector('.ss-track');
+    const dots=wrap.querySelectorAll('.ss-dot');
+    const slides=wrap.querySelectorAll('.ss-slide');
+    const total=slides.length;
+    let current=0;
+    function goTo(i){
+      current=(i+total)%total;
+      track.style.transform=`translateX(-${current*100}%)`;
+      dots.forEach((d,idx)=>d.classList.toggle('active',idx===current));
+    }
+    wrap.querySelector('.ss-prev').addEventListener('click',e=>{e.stopPropagation();goTo(current-1);});
+    wrap.querySelector('.ss-next').addEventListener('click',e=>{e.stopPropagation();goTo(current+1);});
+    dots.forEach((dot,i)=>dot.addEventListener('click',()=>goTo(i)));
+  });
+  document.querySelectorAll('.filter-chip').forEach(chip=>{
+    chip.addEventListener('click',function(){
+      document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+      this.classList.add('active');
+      const f=this.dataset.filter;
+      document.querySelectorAll('.project-card[data-category]').forEach(card=>{
+        card.style.display=(f==='all'||card.dataset.category===f)?'flex':'none';
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>
